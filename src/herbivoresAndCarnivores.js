@@ -21,6 +21,10 @@ class Herbivore extends Animal {
   hide() {
     this.hidden = true;
   }
+
+  die() {
+    super.die();
+  }
 }
 
 class Carnivore extends Animal {
@@ -28,7 +32,11 @@ class Carnivore extends Animal {
     if (herbivore instanceof Herbivore && !herbivore.hidden) {
       herbivore.health -= 50;
 
-      if (herbivore.health <= 0) {
+      if (herbivore.health < 0) {
+        herbivore.health = 0;
+      }
+
+      if (herbivore.health === 0) {
         herbivore.die();
       }
     }
